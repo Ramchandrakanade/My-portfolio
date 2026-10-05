@@ -1,0 +1,15 @@
+FINAL PORTFOLIO PACKAGE
+
+This folder is ready to copy into:
+C:\Users\ramch\Downloads\My-portfolio-ready
+
+Git commands:
+git add -A
+git commit -m "Add portfolio assets and project images"
+git push
+
+Then enable GitHub Pages:
+Repository Settings -> Pages -> Deploy from a branch -> main -> /(root) -> Save
+
+Live URL:
+https://ramchandrakanade.github.io/My-portfolio/

@@ -44,7 +44,8 @@
         "Deep Learning"
       ],
       "link": "https://github.com/Ramchandrakanade/cross-dataset-speech-emotion-recognition",
-      "art": "1"
+      "art": "1",
+      "bg": "assets/projects/speech-emotion-recognition.jpg"
     },
     {
       "title": "QC Automation Toolkit",
@@ -84,7 +85,8 @@
         "Tableau"
       ],
       "link": "https://github.com/Ramchandrakanade",
-      "art": "4"
+      "art": "4",
+      "bg": "assets/projects/customer-sales-analytics.jpg"
     },
     {
       "title": "Real-Time GPS Tracking",
@@ -98,7 +100,8 @@
         "Geopy"
       ],
       "link": "https://github.com/Ramchandrakanade",
-      "art": "5"
+      "art": "5",
+      "bg": "assets/projects/real-time-gps-tracking.jpg"
     },
     {
       "title": "Airbnb Listings Analysis",
@@ -111,7 +114,8 @@
         "Seaborn"
       ],
       "link": "https://github.com/Ramchandrakanade",
-      "art": "6"
+      "art": "6",
+      "bg": "assets/projects/airbnb-listings-analysis.jpg"
     },
     {
       "title": "Netflix Content Analysis",
@@ -124,29 +128,30 @@
         "Seaborn"
       ],
       "link": "https://github.com/Ramchandrakanade",
-      "art": "7"
+      "art": "7",
+      "bg": "assets/projects/netflix-content-analysis.jpg"
     }
   ],
   "certificates": [
     {
       "title": "GenAI Powered Data Analytics",
       "subtitle": "Tata · Jul 2025",
-      "image": "assets/certs/genai-powered-data-analytics.jpg",
-      "pdf": "assets/certs/genai-powered-data-analytics.pdf",
+      "image": "assets/certs/tata-genai-powered-data-analytics.jpg",
+      "pdf": "assets/certs/tata-genai-powered-data-analytics.pdf",
       "pdfName": "Tata-GenAI-Powered-Data-Analytics-Certificate.pdf"
     },
     {
       "title": "Data Analytics",
       "subtitle": "Deloitte · Jul 2025",
-      "image": "assets/certs/data-analytics.jpg",
-      "pdf": "assets/certs/data-analytics.pdf",
+      "image": "assets/certs/deloitte-data-analytics.jpg",
+      "pdf": "assets/certs/deloitte-data-analytics.pdf",
       "pdfName": "Deloitte-Data-Analytics-Certificate.pdf"
     },
     {
       "title": "Data Science",
       "subtitle": "British Airways · Jul 2025",
-      "image": "assets/certs/data-science.jpg",
-      "pdf": "assets/certs/data-science.pdf",
+      "image": "assets/certs/british-airways-data-science.jpg",
+      "pdf": "assets/certs/british-airways-data-science.pdf",
       "pdfName": "British-Airways-Data-Science-Certificate.pdf"
     },
     {
@@ -171,7 +176,7 @@
       "company": "Microsoft · Coursera · Online Course",
       "location": "Remote",
       "initials": "CO",
-      "logo": "assets/logos/co.jpg",
+      "logo": "assets/logos/coursera.jpg",
       "bullets": [
         "Wrote automated UI test scripts with Playwright in VS Code and learned which test cases are the best candidates for automation.",
         "Validated backend states with SQL SELECT queries and performed API and load testing using Apache JMeter.",
@@ -193,7 +198,7 @@
       "company": "QSpiders - Software Testing Training Institute · Internship",
       "location": "Pune District, Maharashtra, India · On-site",
       "initials": "QS",
-      "logo": "assets/logos/qs.jpg",
+      "logo": "assets/logos/qspiders.jpg",
       "bullets": [
         "Worked on machine learning, deep learning and convolutional neural networks (CNN).",
         "Contributed to building AI models and extracting data from files for data analysis and predictive solutions."
@@ -206,7 +211,7 @@
       "company": "Internshala · Internship",
       "location": "Remote",
       "initials": "IS",
-      "logo": "assets/logos/is.jpg",
+      "logo": "assets/logos/internshala.jpg",
       "bullets": [
         "Analyzed sales and customer data using SQL and Python to identify seasonal trends and purchasing behavior.",
         "Created Tableau dashboards to visualize store-level performance and KPIs, enabling better inventory management.",
@@ -223,7 +228,7 @@
       "company": "Unified Mentor Private Limited · Internship",
       "location": "Gurugram, Haryana, India · Remote",
       "initials": "UM",
-      "logo": "assets/logos/um.jpg",
+      "logo": "assets/logos/unified-mentor.jpg",
       "bullets": [
         "Performed data preprocessing, cleaning and EDA using Python (Pandas, NumPy, Matplotlib, Seaborn).",
         "Assisted in developing and evaluating machine learning models for predictive analysis and reporting.",
