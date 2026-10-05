@@ -567,7 +567,7 @@ var CFG=window.RK_CMS_CONFIG||{};
 var SUPABASE_URL=CFG.SUPABASE_URL||'';
 var SUPABASE_ANON_KEY=CFG.SUPABASE_ANON_KEY||'';
 var E=function(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')};
-var safeUrl=function(u){u=String(u||'').trim();if(!u)return '';var m=u.match(/^([a-z][a-z0-9+.-]*):/i);if(!m)return u;return /^(https?|mailto|blob)$/i.test(m[1])?u:''};
+var safeUrl=function(u){u=String(u||'').trim();if(!u)return '';u=u.replace(/assets\/logos\/co\.jpg$/i,'assets/logos/coursera.jpg').replace(/assets\/logos\/qs\.jpg$/i,'assets/logos/qspiders.jpg').replace(/assets\/logos\/is\.jpg$/i,'assets/logos/internshala.jpg').replace(/assets\/logos\/um\.jpg$/i,'assets/logos/unified-mentor.jpg');var m=u.match(/^([a-z][a-z0-9+.-]*):/i);if(!m)return u;return /^(https?|mailto|blob)$/i.test(m[1])?u:''};
 var q=function(sel){return document.querySelector(sel)};
 var setText=function(sel,val){var el=q(sel);if(el&&val!=null)el.textContent=val};
 var R={
