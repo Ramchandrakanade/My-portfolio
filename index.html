@@ -517,7 +517,7 @@ h1,h2,h3,.logo{text-rendering:optimizeLegibility}
    The dark fade that used to be a background gradient is now a mask on that layer. */
 .projects .project,html[data-theme="light"] .projects .project{background-image:none!important}
 .projects .project::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:var(--project-bg,var(--art)) right center/auto 100% no-repeat;
+  background:none!important;
   -webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.03) 0%,rgba(0,0,0,.1) 50%,rgba(0,0,0,.78) 100%);
   mask-image:linear-gradient(90deg,rgba(0,0,0,.03) 0%,rgba(0,0,0,.1) 50%,rgba(0,0,0,.78) 100%);
   transform-origin:100% 50%;scale:1.04;will-change:scale,translate;backface-visibility:hidden;
