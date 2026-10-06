@@ -51,7 +51,148 @@ alert('Background upload failed:\n\n'+(err.message||err));
 };const removeBg=d.querySelector('[data-remove-bg]');if(removeBg)removeBg.onclick=()=>{delete content.projects[i].bg;renderProjectList();status('Project background removed ?')};root.appendChild(d)})}
 
 function renderExperienceList(){const root=$('#experienceEditor');root.innerHTML='';content.experience.forEach((x,i)=>{const d=document.createElement('div');d.className='list-item';d.innerHTML=`<div class="list-head"><b>Experience ${i+1}</b><button class="btn danger remove">Remove</button></div><div class="item-grid"><div><label>Date</label><input data-k="date" value="${esc(x.date)}"></div><div><label>Title</label><input data-k="title" value="${esc(x.title)}"></div><div><label>Company</label><input data-k="company" value="${esc(x.company)}"></div><div><label>Location</label><input data-k="location" value="${esc(x.location)}"></div><div><label>Initials</label><input data-k="initials" value="${esc(x.initials)}"></div><div><label>Logo path / URL</label><input data-k="logo" value="${esc(x.logo||'')}"></div><div class="full"><label>Bullet points (one per line)</label><textarea data-k="bullets" data-lines>${esc((x.bullets||[]).join('\n'))}</textarea></div><div class="full"><label>Technology tags (comma separated)</label><input data-k="stack" value="${esc((x.stack||[]).join(', '))}"></div></div>`;d.querySelector('.remove').onclick=()=>{content.experience.splice(i,1);renderExperienceList()};d.querySelectorAll('[data-k]').forEach(el=>el.oninput=()=>{const k=el.dataset.k;content.experience[i][k]=el.dataset.lines?el.value.split('\n').map(v=>v.trim()).filter(Boolean):k==='stack'?el.value.split(',').map(v=>v.trim()).filter(Boolean):el.value});root.appendChild(d)})}
-function renderCertificateList(){const root=$('#certificatesEditor');root.innerHTML='';content.certificates.forEach((x,i)=>{const d=document.createElement('div');d.className='list-item';d.innerHTML=`<div class="list-head"><b>Certificate ${i+1}</b><button class="btn danger remove">Remove</button></div><div class="item-grid"><div><label>Title</label><input data-k="title" value="${esc(x.title)}"></div><div><label>Subtitle</label><input data-k="subtitle" value="${esc(x.subtitle)}"></div><div><label>Image path / URL</label><input data-k="image" value="${esc(x.image||'')}"></div><div><label>PDF path / URL</label><input data-k="pdf" value="${esc(x.pdf||'')}"></div><div class="full"><label>PDF filename</label><input data-k="pdfName" value="${esc(x.pdfName||'')}"></div></div>`;d.querySelector('.remove').onclick=()=>{content.certificates.splice(i,1);renderCertificateList()};d.querySelectorAll('[data-k]').forEach(el=>el.oninput=()=>content.certificates[i][el.dataset.k]=el.value);root.appendChild(d)})}
+function renderCertificateList(){
+  const root=$('#certificatesEditor');
+  root.innerHTML='';
+
+  content.certificates.forEach((x,i)=>{
+    const d=document.createElement('div');
+    d.className='list-item';
+
+    const pdf=x.pdf||'';
+
+    d.innerHTML=`
+      <div class="list-head">
+        <b>Certificate ${i+1}</b>
+        <button class="btn danger remove">Remove</button>
+      </div>
+
+      <div class="item-grid">
+        <div>
+          <label>Title</label>
+          <input data-k="title" value="${esc(x.title)}">
+        </div>
+
+        <div>
+          <label>Subtitle</label>
+          <input data-k="subtitle" value="${esc(x.subtitle)}">
+        </div>
+
+        <div>
+          <label>Image path / URL</label>
+          <input data-k="image" value="${esc(x.image||'')}">
+        </div>
+
+        <div>
+          <label>PDF file</label>
+          <input type="file" accept="application/pdf,.pdf" data-upload="certificate-pdf">
+          <div style="margin-top:8px;color:#9ca69f;font-size:12px">
+            ${pdf?'PDF uploaded ✓':'No PDF uploaded'}
+          </div>
+        </div>
+
+        <div class="full">
+          <label>PDF filename</label>
+          <input data-k="pdfName" value="${esc(x.pdfName||'')}">
+        </div>
+
+        ${pdf?`
+        <div class="full">
+          <a class="btn" href="${esc(pdf)}" target="_blank" rel="noopener noreferrer">
+            Open current PDF ↗
+          </a>
+          <button type="button" class="btn" data-remove-pdf style="margin-left:8px">
+            Remove PDF
+          </button>
+        </div>`:''}
+      </div>
+    `;
+
+    d.querySelector('.remove').onclick=()=>{
+      content.certificates.splice(i,1);
+      renderCertificateList();
+    };
+
+    d.querySelectorAll('[data-k]').forEach(el=>{
+      el.oninput=()=>{
+        content.certificates[i][el.dataset.k]=el.value;
+      };
+    });
+
+    const upload=d.querySelector('[data-upload="certificate-pdf"]');
+
+    upload.onchange=async e=>{
+      const file=e.target.files[0];
+      if(!file)return;
+
+      if(file.type!=='application/pdf' && !file.name.toLowerCase().endsWith('.pdf')){
+        alert('Please select a PDF file.');
+        e.target.value='';
+        return;
+      }
+
+      try{
+        status('Uploading certificate PDF...');
+
+        const safeName=file.name
+          .toLowerCase()
+          .replace(/[^a-z0-9._-]+/g,'-');
+
+        const path=
+          `certificates/certificate-${String(i+1).padStart(3,'0')}-${Date.now()}-${safeName}`;
+
+        const {error:uploadError}=await sb
+          .storage
+          .from('portfolio-assets')
+          .upload(path,file,{
+            contentType:'application/pdf',
+            upsert:false
+          });
+
+        if(uploadError)throw uploadError;
+
+        const {data:urlData}=sb
+          .storage
+          .from('portfolio-assets')
+          .getPublicUrl(path);
+
+        if(!urlData?.publicUrl){
+          throw new Error('Could not create public PDF URL');
+        }
+
+        content.certificates[i].pdf=urlData.publicUrl;
+        content.certificates[i].pdfName=file.name;
+
+        renderCertificateList();
+
+        status('Certificate PDF uploaded ✓');
+
+      }catch(err){
+        console.error('Certificate PDF upload error:',err);
+
+        status('PDF upload failed: '+(err.message||'Unknown error'));
+
+        alert(
+          'Certificate PDF upload failed:\n\n'+
+          (err.message||err)
+        );
+      }
+    };
+
+    const removePdf=d.querySelector('[data-remove-pdf]');
+
+    if(removePdf){
+      removePdf.onclick=()=>{
+        delete content.certificates[i].pdf;
+        delete content.certificates[i].pdfName;
+        renderCertificateList();
+        status('Certificate PDF removed ✓');
+      };
+    }
+
+    root.appendChild(d);
+  });
+}
 function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')} function fileToDataUrl(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}
 function render(){fillSimple();renderProjectList();renderExperienceList();renderCertificateList();$('#jsonEditor').value=JSON.stringify(content,null,2);$('#countProjects').textContent=content.projects.length;$('#countExperience').textContent=content.experience.length;$('#countCertificates').textContent=content.certificates.length;$('#countSkills').textContent=content.skills.length}
 async function load(){
