@@ -892,7 +892,7 @@ function open(a){last=a;const src=(a.dataset.cert||'').trim();T.textContent=(a.d
  if(a.dataset.pdfurl){O.href=a.dataset.pdfurl;O.textContent='Open PDF';O.hidden=false;D.href=a.dataset.pdfurl;D.download=a.dataset.pdfname||'certificate.pdf';D.hidden=false}
  m.classList.add('open');m.setAttribute('aria-hidden','false');document.documentElement.style.overflow='hidden';m.querySelector('.cv-x').focus()}
 function close(){m.classList.remove('open');m.setAttribute('aria-hidden','true');document.documentElement.style.overflow='';B.innerHTML='';if(last)last.focus()}
-document.querySelectorAll('.cert .arrow').forEach(a=>{a.removeAttribute('data-pending');a.removeAttribute('title');a.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();open(a)});a.addEventListener('keydown',e=>{if(e.key===' '){e.preventDefault();open(a)}})});
+window.RKBindCertificateButtons=function(){if(window.__rkCertDelegated)return;window.__rkCertDelegated=true;document.addEventListener('click',function(e){var a=e.target.closest('.cert .arrow');if(!a)return;e.preventDefault();e.stopPropagation();open(a)});document.addEventListener('keydown',function(e){var a=e.target.closest('.cert .arrow');if(!a)return;if(e.key===' '||e.key==='Enter'){e.preventDefault();e.stopPropagation();open(a)}})}; window.RKBindCertificateButtons();
 m.addEventListener('click',e=>{if(e.target===m||e.target.closest('.cv-x'))close()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&m.classList.contains('open'))close()});
 })();</script><style id="rk-certbtn">.cert .arrow{display:inline-flex;align-items:center;justify-content:center;width:40px;height:34px;padding:0!important;right:16px!important;bottom:16px!important;font-size:20px;line-height:1;border:1px solid rgba(184,255,61,.3);border-radius:8px;background:rgba(184,255,61,.05);transition:all .25s ease}.cert .arrow:hover,.cert .arrow:focus-visible{color:#fff;border-color:rgba(184,255,61,.7);background:rgba(184,255,61,.14);box-shadow:0 0 18px rgba(184,255,61,.18);outline:none;transform:translate(2px,-2px)}.cert .arrow:active{transform:scale(.95)}html[data-theme="light"] .cert .arrow{border-color:rgba(58,138,0,.35);background:rgba(58,138,0,.06)}html[data-theme="light"] .cert .arrow:hover,html[data-theme="light"] .cert .arrow:focus-visible{color:#2d6b00;border-color:rgba(58,138,0,.75);background:rgba(58,138,0,.14);box-shadow:none}</style><style id="rk-mobile-float">@media(max-width:600px){
@@ -934,3 +934,6 @@ html[data-theme="light"] .timeline .job li,html[data-theme="light"] .timeline .j
 @media(max-width:850px){html[data-theme="light"] .timeline .job:before{opacity:.22!important}}
 </style></body></html>
 <!-- fresh-pages-deployment -->
+
+
+
