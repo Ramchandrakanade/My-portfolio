@@ -1,11 +1,11 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RK Admin — Portfolio CMS</title>
+﻿<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RK Admin â€” Portfolio CMS</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="cms-config.js"></script>
 <style>
 :root{--bg:#0b0d0f;--panel:#111416;--panel2:#151a17;--line:#29312c;--text:#edf2ee;--muted:#9ca69f;--accent:#b8ff3d;--danger:#ff6b6b;--shadow:0 18px 55px rgba(0,0,0,.3)}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,rgba(184,255,61,.08),transparent 32%),var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}.wrap{max-width:1400px;margin:auto;padding:24px}.login{min-height:100vh;display:grid;place-items:center}.login-card{width:min(440px,92vw);padding:34px;border:1px solid var(--line);border-radius:24px;background:rgba(17,20,22,.94);box-shadow:var(--shadow)}.logo{font-size:24px;font-weight:900;letter-spacing:-1px}.logo span{color:var(--accent)}.eyebrow{color:var(--accent);font-size:12px;text-transform:uppercase;letter-spacing:.18em;margin-bottom:10px}.login h1{font-size:36px;margin:0 0 8px}.muted{color:var(--muted)}label{display:block;font-size:12px;color:var(--muted);margin:16px 0 7px}input,textarea{width:100%;background:#0d1011;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px 13px;outline:none}textarea{min-height:110px;resize:vertical}input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(184,255,61,.1)}.btn{border:1px solid var(--line);background:#161b18;color:var(--text);border-radius:12px;padding:11px 15px;font-weight:700}.btn.primary{background:var(--accent);color:#091006;border-color:var(--accent)}.btn.danger{color:#ffb0b0;border-color:rgba(255,107,107,.3)}.login .btn{width:100%;margin-top:18px}.error{color:#ff9c9c;margin-top:12px}.app{display:none}.topbar{position:sticky;top:0;z-index:10;background:rgba(11,13,15,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.topin{max-width:1400px;margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:10px}.brandmark{width:38px;height:38px;border-radius:11px;background:var(--accent);color:#081006;display:grid;place-items:center;font-weight:900}.actions{display:flex;gap:9px;flex-wrap:wrap}.layout{display:grid;grid-template-columns:230px 1fr;gap:22px;align-items:start}.side{position:sticky;top:82px;padding:14px;border:1px solid var(--line);background:var(--panel);border-radius:18px}.side button{width:100%;text-align:left;background:none;color:var(--muted);border:0;padding:11px;border-radius:10px}.side button.active,.side button:hover{background:#1b211d;color:var(--text)}.main{min-width:0}.section{display:none}.section.active{display:block}.head{margin:8px 0 22px}.head h1{font-size:34px;letter-spacing:-1px;margin:0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 8px 30px rgba(0,0,0,.12)}.card h3{margin:0 0 5px}.full{grid-column:1/-1}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}.stat{padding:17px;border:1px solid var(--line);background:var(--panel);border-radius:15px}.stat b{font-size:25px;color:var(--accent)}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.list-item{border:1px solid var(--line);background:var(--panel2);border-radius:15px;padding:15px;margin:12px 0}.list-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.item-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.item-grid .full{grid-column:1/-1}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.chip{border:1px solid var(--line);border-radius:999px;padding:6px 9px;color:#cbd4ce;background:#0e1210}.savebar{position:sticky;bottom:16px;display:flex;justify-content:flex-end;gap:10px;margin-top:20px}.status{position:fixed;right:22px;bottom:22px;background:#192019;border:1px solid var(--accent);color:var(--text);padding:12px 16px;border-radius:12px;display:none;z-index:20}.status.show{display:block}.small{font-size:12px}.help{padding:12px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);margin-top:12px}.hidden{display:none!important}@media(max-width:900px){.layout{grid-template-columns:1fr}.side{position:static;display:flex;overflow:auto}.side button{min-width:max-content}.grid,.stats{grid-template-columns:1fr}.row,.item-grid{grid-template-columns:1fr}.topin{align-items:flex-start;flex-direction:column}}
 </style></head><body>
-<div id="login" class="login"><div class="login-card"><div class="logo">RK<span>.</span></div><div class="eyebrow">Private portfolio admin</div><h1>Welcome back.</h1><p class="muted">Sign in to edit your portfolio. Your password is handled by Supabase Auth and is never stored in this page.</p><label>Email</label><input id="email" type="email" autocomplete="username" placeholder="your@email.com"><label>Password</label><input id="password" type="password" autocomplete="current-password" placeholder="••••••••"><button class="btn primary" id="loginBtn">Sign in ↗</button><div id="loginError" class="error"></div><div class="help small">Before using this page, replace the Supabase URL and anon key in the configuration section of this file and run the SQL setup provided with it.</div></div></div>
-<div id="app" class="app"><header class="topbar"><div class="topin"><div class="brand"><div class="brandmark">RK</div><div><b>Portfolio Admin</b><div class="muted small">Ramchandra Kanade · CMS</div></div></div><div class="actions"><button class="btn" id="siteBtn">Open website ↗</button><button class="btn" id="logoutBtn">Log out</button></div></div></header>
+<div id="login" class="login"><div class="login-card"><div class="logo">RK<span>.</span></div><div class="eyebrow">Private portfolio admin</div><h1>Welcome back.</h1><p class="muted">Sign in to edit your portfolio. Your password is handled by Supabase Auth and is never stored in this page.</p><label>Email</label><input id="email" type="email" autocomplete="username" placeholder="your@email.com"><label>Password</label><input id="password" type="password" autocomplete="current-password" placeholder="••••••••"><button class="btn primary" id="loginBtn">Sign in ↗</button><button class="btn" id="forgotBtn" type="button">Forgot password?</button><div id="loginError" class="error"></div><div class="help small">Before using this page, replace the Supabase URL and anon key in the configuration section of this file and run the SQL setup provided with it.</div></div></div>
+<div id="app" class="app"><header class="topbar"><div class="topin"><div class="brand"><div class="brandmark">RK</div><div><b>Portfolio Admin</b><div class="muted small">Ramchandra Kanade Â· CMS</div></div></div><div class="actions"><button class="btn" id="siteBtn">Open website ↗</button><button class="btn" id="logoutBtn">Log out</button></div></div></header>
 <div class="wrap layout"><aside class="side"><button class="active" data-tab="dashboard">Dashboard</button><button data-tab="profile">Profile & Hero</button><button data-tab="about">About & Contact</button><button data-tab="skills">Skills</button><button data-tab="projects">Projects</button><button data-tab="experience">Experience</button><button data-tab="certificates">Certificates</button><button data-tab="advanced">Advanced JSON</button></aside>
 <main class="main">
 <section id="dashboard" class="section active"><div class="head"><div class="eyebrow">Control center</div><h1>Your portfolio.</h1><p class="muted">Edit content here and publish it to the live website without changing HTML.</p></div><div class="stats"><div class="stat"><b id="countProjects">0</b><div class="muted">Projects</div></div><div class="stat"><b id="countExperience">0</b><div class="muted">Experience</div></div><div class="stat"><b id="countCertificates">0</b><div class="muted">Certificates</div></div><div class="stat"><b id="countSkills">0</b><div class="muted">Skills</div></div></div><div class="card"><h3>How publishing works</h3><p class="muted">You sign in → edit content → click <b>Publish changes</b> → the public portfolio reads the new content from the database. No password is put into the public website.</p></div></section>
@@ -33,18 +33,205 @@ function renderExperienceList(){const root=$('#experienceEditor');root.innerHTML
 function renderCertificateList(){const root=$('#certificatesEditor');root.innerHTML='';content.certificates.forEach((x,i)=>{const d=document.createElement('div');d.className='list-item';d.innerHTML=`<div class="list-head"><b>Certificate ${i+1}</b><button class="btn danger remove">Remove</button></div><div class="item-grid"><div><label>Title</label><input data-k="title" value="${esc(x.title)}"></div><div><label>Subtitle</label><input data-k="subtitle" value="${esc(x.subtitle)}"></div><div><label>Image path / URL</label><input data-k="image" value="${esc(x.image||'')}"></div><div><label>PDF path / URL</label><input data-k="pdf" value="${esc(x.pdf||'')}"></div><div class="full"><label>PDF filename</label><input data-k="pdfName" value="${esc(x.pdfName||'')}"></div></div>`;d.querySelector('.remove').onclick=()=>{content.certificates.splice(i,1);renderCertificateList()};d.querySelectorAll('[data-k]').forEach(el=>el.oninput=()=>content.certificates[i][el.dataset.k]=el.value);root.appendChild(d)})}
 function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 function render(){fillSimple();renderProjectList();renderExperienceList();renderCertificateList();$('#jsonEditor').value=JSON.stringify(content,null,2);$('#countProjects').textContent=content.projects.length;$('#countExperience').textContent=content.experience.length;$('#countCertificates').textContent=content.certificates.length;$('#countSkills').textContent=content.skills.length}
-async function load(){const {data,error}=await sb.from('portfolio_content').select('content').eq('id',1).single();if(error){console.error(error);status('Could not load portfolio content');return}content=data.content;render()}
-async function save(){readSimple();const {error}=await sb.from('portfolio_content').upsert({id:1,content,updated_at:new Date().toISOString()});if(error){console.error(error);status('Save failed: '+error.message);return}$('#jsonEditor').value=JSON.stringify(content,null,2);status('Published successfully ✓')}
-$$('.side button').forEach(b=>b.onclick=()=>{$$('.side button').forEach(x=>x.classList.remove('active'));b.classList.add('active');$$('.section').forEach(x=>x.classList.remove('active'));$('#'+b.dataset.tab).classList.add('active')});
-$$('.save').forEach(b=>b.onclick=save);
-$('#addProject').onclick=()=>{content.projects.push({title:'New Project',desc:'',result:'',meta:'',stack:[],link:'',art:''});renderProjectList()};
-$('#addExperience').onclick=()=>{content.experience.push({date:'',title:'',company:'',location:'',initials:'',logo:'',bullets:[],stack:[]});renderExperienceList()};
-$('#addCertificate').onclick=()=>{content.certificates.push({title:'New Certificate',subtitle:'',image:'',pdf:'',pdfName:''});renderCertificateList()};
-$('#formatJson').onclick=()=>{try{$('#jsonEditor').value=JSON.stringify(JSON.parse($('#jsonEditor').value),null,2)}catch(e){status('Invalid JSON')}};
-$('#saveJson').onclick=async()=>{try{content=JSON.parse($('#jsonEditor').value);render();await save()}catch(e){status('Invalid JSON — fix it first')}};
-$('#siteBtn').onclick=()=>window.open(SITE_URL,'_blank');
-$('#logoutBtn').onclick=async()=>{await sb.auth.signOut();location.reload()};
-$('#loginBtn').onclick=async()=>{const {error}=await sb.auth.signInWithPassword({email:$('#email').value.trim(),password:$('#password').value});if(error)$('#loginError').textContent=error.message;else boot()};
-async function boot(){ $('#login').classList.add('hidden');$('#app').style.display='block';await load() }
-sb.auth.getSession().then(({data})=>data.session?boot():null);
+async function load(){
+  if(!sb){
+    render();
+    status('Supabase is not configured');
+    return;
+  }
+
+  // First try the published CMS row.
+  const {data,error}=await sb.from('portfolio_content')
+    .select('content')
+    .eq('id',1)
+    .maybeSingle();
+
+  const saved=data?.content;
+  const savedLooksValid=saved &&
+    Array.isArray(saved.projects) &&
+    Array.isArray(saved.experience) &&
+    Array.isArray(saved.certificates) &&
+    Array.isArray(saved.skills) &&
+    (saved.projects.length || saved.experience.length || saved.certificates.length || saved.skills.length);
+
+  if(savedLooksValid){
+    content=saved;
+    render();
+    status('Portfolio loaded ✓');
+    return;
+  }
+
+  if(error) console.warn('Could not read saved portfolio row:',error);
+
+  // No usable database content yet: load the existing portfolio source file.
+  try{
+    const response=await fetch('content.json',{cache:'no-store'});
+    if(!response.ok) throw new Error('content.json could not be loaded');
+    const initialContent=await response.json();
+
+    content=initialContent;
+    render();
+    status('Existing portfolio loaded ✓');
+
+    // Then try to create/update the CMS row. Even if this fails,
+    // the existing portfolio remains visible in the admin editor.
+    const {error:seedError}=await sb.from('portfolio_content').upsert({
+      id:1,
+      content:initialContent,
+      updated_at:new Date().toISOString()
+    });
+
+    if(seedError){
+      console.error('Seed error:',seedError);
+      status('Portfolio loaded, but database seed failed: '+seedError.message);
+    }else{
+      status('Portfolio loaded and saved to CMS ✓');
+    }
+  }catch(e){
+    console.error('Initial content error:',e);
+    status('Could not load content.json: '+e.message);
+    render();
+  }
+}
+async function save(){
+  readSimple();
+  const {error}=await sb.from('portfolio_content').upsert({
+    id:1,
+    content,
+    updated_at:new Date().toISOString()
+  });
+  if(error){
+    console.error('Save error:',error);
+    status('Save failed: '+error.message);
+    return;
+  }
+  $('#jsonEditor').value=JSON.stringify(content,null,2);
+  render();
+  status('Published successfully ✓');
+}
+function initAdmin(){
+  $$('.side button').forEach(b=>b.onclick=()=>{
+    $$('.side button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    $$('.section').forEach(x=>x.classList.remove('active'));
+    $('#'+b.dataset.tab).classList.add('active');
+  });
+
+  $$('.save').forEach(b=>b.onclick=save);
+
+  $('#addProject').onclick=()=>{
+    content.projects.push({title:'New Project',desc:'',result:'',meta:'',stack:[],link:'',art:''});
+    renderProjectList();
+  };
+  $('#addExperience').onclick=()=>{
+    content.experience.push({date:'',title:'',company:'',location:'',initials:'',logo:'',bullets:[],stack:[]});
+    renderExperienceList();
+  };
+  $('#addCertificate').onclick=()=>{
+    content.certificates.push({title:'New Certificate',subtitle:'',image:'',pdf:'',pdfName:''});
+    renderCertificateList();
+  };
+
+  $('#formatJson').onclick=()=>{
+    try{$('#jsonEditor').value=JSON.stringify(JSON.parse($('#jsonEditor').value),null,2)}
+    catch(e){status('Invalid JSON')}
+  };
+
+  $('#saveJson').onclick=async()=>{
+    try{
+      content=JSON.parse($('#jsonEditor').value);
+      render();
+      await save();
+    }catch(e){status('Invalid JSON — fix it first')}
+  };
+
+  $('#siteBtn').onclick=()=>window.open(SITE_URL,'_blank');
+
+  $('#logoutBtn').onclick=async()=>{
+    await sb.auth.signOut();
+    location.reload();
+  };
+
+  $('#loginBtn').onclick=async()=>{
+    const email=$('#email').value.trim();
+    const password=$('#password').value;
+    $('#loginError').textContent='';
+    if(!sb){
+      $('#loginError').textContent='Supabase client did not load.';
+      return;
+    }
+    try{
+      const {data,error}=await sb.auth.signInWithPassword({email,password});
+      if(error){
+        $('#loginError').textContent=error.message;
+        console.error('Supabase login error:',error);
+        return;
+      }
+      if(!data?.session){
+        $('#loginError').textContent='Login returned no session.';
+        return;
+      }
+      $('#login').classList.add('hidden');
+      $('#app').style.display='block';
+      await load();
+    }catch(e){
+      console.error('Supabase connection error:',e);
+      $('#loginError').textContent='Could not connect to Supabase.';
+    }
+  };
+
+  $('#forgotBtn').onclick=async()=>{
+    const email=$('#email').value.trim();
+    $('#loginError').textContent='';
+    if(!email){
+      $('#loginError').textContent='Enter your email address first.';
+      return;
+    }
+    try{
+      const {error}=await sb.auth.resetPasswordForEmail(email,{
+        redirectTo:window.location.origin+window.location.pathname
+      });
+      if(error){$('#loginError').textContent=error.message;return}
+      $('#loginError').style.color='#b8ff3d';
+      $('#loginError').textContent='Reset email sent. Check your Gmail inbox.';
+    }catch(e){
+      console.error('Password reset error:',e);
+      $('#loginError').textContent='Could not reach Supabase.';
+    }
+  };
+
+  sb.auth.onAuthStateChange(async(event,session)=>{
+    if(event==='PASSWORD_RECOVERY'&&session){
+      const newPassword=prompt('Enter your new admin password:');
+      if(!newPassword)return;
+      const confirmPassword=prompt('Confirm your new admin password:');
+      if(newPassword!==confirmPassword){
+        alert('Passwords do not match. Please use Forgot password again.');
+        return;
+      }
+      if(newPassword.length<6){
+        alert('Password must be at least 6 characters.');
+        return;
+      }
+      const {error}=await sb.auth.updateUser({password:newPassword});
+      if(error){alert('Password update failed: '+error.message);return}
+      alert('Password changed successfully.');
+      await sb.auth.signOut();
+    }
+  });
+}
+
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',initAdmin);
+}else{
+  initAdmin();
+}
+
+if(sb)sb.auth.getSession().then(async({data:{session}})=>{
+  if(session){
+    await sb.auth.signOut();
+    document.querySelector('#app').style.display='none';
+    document.querySelector('#login').classList.remove('hidden');
+  }
+});
 </script></body></html>
